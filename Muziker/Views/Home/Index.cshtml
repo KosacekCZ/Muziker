@@ -1,0 +1,93 @@
+﻿@using System.Collections
+@using System.Security.Cryptography
+@{
+    ViewData["Title"] = "Home Page";
+}
+<div>
+    <h1>Muziker.info</h1>
+    <p>Everything about shitty songs, now online!</p>
+    <hr/>
+</div>
+
+<div class="row">
+    <div class="col-5 card-info">
+        <div class="nadpis">
+            <h2>Artists</h2>
+        </div>
+        <div class="data">
+            @{
+                foreach (Item i in (IEnumerable<Item>)ViewData["artists"])
+                {
+                    <p>@i.artist</p>
+                }
+            }
+        </div>
+    </div>
+    <div class="col-5 card-info">
+        <div class="nadpis">
+            <h2>New Releases</h2>
+        </div>
+        <div class="data">
+            @{
+                foreach (Item i in (IEnumerable<Item>)ViewData["songs"])
+                {
+                    <p>@i.song</p>
+                }
+            }
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-5 card-info">
+            <div class="nadpis">
+                <h2>By Artists</h2>
+            </div>
+            <div class="data">
+                @{
+                    foreach (Item i in (IEnumerable<Item>)ViewData["artists"])
+                    {
+                        foreach (Item j in (IEnumerable<Item>)ViewData["songs"])
+                        {
+                            if (j.artist.Equals(i.artist)) i.songs.Add(j.song);
+                        }
+                        <h4>@i.artist</h4>
+                        <ul>
+                            @{
+                                foreach (var k in i.songs)
+                                {
+                                    <li>@k</li>
+                                }
+                            }
+                        </ul>
+                    }
+                }
+            </div>
+        </div>
+
+        <div class="col-5 card-info">
+            <div class="nadpis">
+                <h2>Statistics</h2>
+            </div>
+            <div class="data">
+                @{
+                    List<Item> songs2020 = (List<Item>)ViewData["songs"];
+                    List<Item> songs2021 = (List<Item>)ViewData["songs"];
+                    songs2020 = songs2020.Where((x => x.year == 2020)).ToList();
+                    songs2021 = songs2021.Where((x => x.year == 2021)).ToList();
+
+                    foreach (var i in songs2020)
+                    {
+                        var index = songs2021.FindIndex(x => x.song.Equals(i.song));
+                        <p>@index</p>
+                        if (index >= 0)
+                        {
+                            Item s2 = songs2021[index];
+                            var change = i.position - s2.position;
+                            
+                            <p>@i.song - @change</p>
+                        }
+                }
+                }
+            </div>
+        </div>
+    </div>
+</div>

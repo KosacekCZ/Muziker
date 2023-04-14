@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "5kHkb2OHPFXqL1V5PcWhlm1RVS8cU1/7X0DlCTN2moMhB90lN0YjAsKnDCj0r1kXVEE1hjK9MHkHzUM6+zQRcw==",
+  "success": true,
+  "projectFilePath": "/home/mikolasp/RiderProjects/Muziker/Muziker/Muziker.csproj",
+  "expectedPackageFiles": [
+    "/home/mikolasp/.nuget/packages/microsoft.aspnetcore.app.ref/7.0.3/microsoft.aspnetcore.app.ref.7.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
