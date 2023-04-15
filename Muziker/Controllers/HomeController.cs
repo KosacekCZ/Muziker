@@ -14,6 +14,7 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
+        ViewData["baselist"] = ParseCSV.Parse();
         ViewData["artists"] = ParseCSV.Parse().DistinctBy(x => x.artist).ToList();
         ViewData["songs"] = ParseCSV.Parse().DistinctBy(x => x.song).ToList();
         return View();

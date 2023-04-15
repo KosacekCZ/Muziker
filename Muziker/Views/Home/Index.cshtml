@@ -69,23 +69,23 @@
             </div>
             <div class="data">
                 @{
-                    List<Item> songs2020 = (List<Item>)ViewData["songs"];
-                    List<Item> songs2021 = (List<Item>)ViewData["songs"];
+                    List<Item> songs2020 = (List<Item>)ViewData["baselist"];
+                    List<Item> songs2021 = (List<Item>)ViewData["baselist"];
                     songs2020 = songs2020.Where((x => x.year == 2020)).ToList();
                     songs2021 = songs2021.Where((x => x.year == 2021)).ToList();
 
                     foreach (var i in songs2020)
                     {
-                        var index = songs2021.FindIndex(x => x.song.Equals(i.song));
-                        <p>@index</p>
+                        var index = songs2021.FindIndex(j => j.song.Equals(i.song));
                         if (index >= 0)
                         {
                             Item s2 = songs2021[index];
                             var change = i.position - s2.position;
-                            
-                            <p>@i.song - @change</p>
+                            var state = (@change > 0 ? "gained" : "sinked");
+                            change = Math.Abs(change);
+                            <p>@i.song @state @change positions</p>
                         }
-                }
+                    }
                 }
             </div>
         </div>

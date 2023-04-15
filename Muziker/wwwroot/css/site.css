@@ -29,6 +29,7 @@ body {
   overflow-y: scroll;
   height: 50vh;
   position: relative;
+  margin: 2rem 0;
 }
 
 .card-info .data {

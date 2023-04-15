@@ -9,7 +9,7 @@ public class ParseCSV
         {
 
             List<string> lines = line.Split(";").ToList();
-            lines = lines.Select(s => s.Replace("\"", "")).ToList();
+            lines = lines.Select(s => s.Replace("\"", "").Trim()).ToList();
 
             _temp.Add(new Item(int.Parse(lines[0]), 
                 int.Parse(lines[1]),
